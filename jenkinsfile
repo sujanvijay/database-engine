@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'sujan',
+                    url: 'https://github.com/sujanvijay/database-engine.git'
+            }
+        }
+
+        stage('Build & Test') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
